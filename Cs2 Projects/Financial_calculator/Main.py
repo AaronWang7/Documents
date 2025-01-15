@@ -26,6 +26,7 @@ def TIME():
             print("6. Exit")
             choice = input("Select an option (1-6): ")
 
+
             
            
 
@@ -45,6 +46,8 @@ def TIME():
                 break
             else:
                 print("Please try again.")
+            main()
+
         
 
         #saving goal calculator
@@ -61,6 +64,7 @@ def TIME():
                 print("Invalid. Try again.")
                 return
             print(f"It will take about {time:.2f} months to reach your savings goal.")
+            saving_goal_calculator
         #compind interst calculator
         def compound_interest_calculator():
             print("This is the compound interest calvulator!")
@@ -69,6 +73,7 @@ def TIME():
             time = int(input("Enter the time in years: "))
             future_money = money_in_bank * (1 + rate) ** (1 * time)
             print(f"The future money of your investment is: ${future_money:.2f}")
+            compound_interest_calculator
             #budget_allocator
         def budget_allocator():
             print("This is the budget allocator!")
@@ -87,6 +92,7 @@ def TIME():
             TIME
             print(f"This is how much for other stuffs{income * others}$")
             TIME
+            budget_allocator
             #sale_price_calculator
         def sale_price_calculator():
 
@@ -107,5 +113,4 @@ def TIME():
             total = bill + tip
             TIME
             print(f"tip: ${tip:.2f}, total bill: ${total:.2f}")
-    main()
-
+            tip_calculator
