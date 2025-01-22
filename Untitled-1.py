@@ -1,73 +1,78 @@
-#Aaron.Wang Personal Library program
+#Aaron.Wang Personal Library Program
 
 
-"""
-Create a program that allows user to manage a personal library catalog for any ONE type (books, movies, music, etc). 
-The project needs to allow users to add new items, display ALL contents, search for a specific item (by title, author/artist/director),
- remove a book from the library, exit the program. 
-note: We will be building off this project later on so make sure you do a good job on it! 
-"""
-Author = []
-Titles = []
-libary = []
-chouice = {"Add items to the libary":1,"Serch Items to the libary":2, "remove items to libary":3
+# Pseudocode:
+# - Use a list to store items as dictionaries with title author and type
+# - Create functions for each different jobs
 
-}
-Tofind = []
-import time 
-import random
-def delay():
-    print("r/Loding...")
-    time.sleep(1)
-while True:
-    def main():
-        print(chouice)
-        delay
-        act = int(input("what whould you like to do?:"))
-        if act == 1:
-            add()
-        elif act == 2:
-            remove()
-        elif act == 3:
-            search()
-        else:
-            print("Wrong input")
+
+#library list
+library = []
+
+def display():
+    # Display the chouice
+    print("1 = Add an item")
+    print("2 = Search for an item")
+    print("3 = Remove an item")
+    print("4 = Display all items")
+    print("5 = Exit the program")
+
+def add_item():
+    #Add a new item to the library
+    item_type = input("Enter the type of item (book, movie, music): ")
+    title = input("Enter the title: ")
+    author = input("Enter the author/artist/director: ")
+    # Add the item as a dictionary
+    library.append({"type": item_type, "title": title, "author": author})
+    print(f"Item '{title}' added to library.")
+
+def search_item():
+    """Search for an item by title or author."""
+    itemname = input("Enter the title or author to search: ")
+    results = []
+    #library loop
+    for item in library:
+        # Check if the item is the title or author
+        if itemname in item["title"] or itemname in item["author"]:
+            results.append(item)  # add item to results list
+            print(f"Item found!{results}")
     
 
+def remove_item():
+    #Remove item
+    title = input("Enter the title of item to remove: ")
+    for item in library:
+        if item["title"] == title:
+            library.remove(item)
+            print(f"Item {title} removed from library")
+            return
+    print(f"No item with the title {title}")
 
-        
-    def add():
-        item_add = input("What item would you like to add?:")
-        Title = input("What is the title?:")
-        author = input("who is the author?:")
-        if item_add in libary:
-            print("Sorry the item is already in the libary")
-        else:
-            libary.append(item_add)
-            Author.append(author)
-            Titles.append(Title)
+def display_all():
+    # Display all item in the library
+    print(library)
 
-
-    def remove():
-            item_remove = input("What item would you like to remove?:")
-            if item_remove not in libary:
-                print("Sorry the item is not in the libary")
+def main():
+    # Main function to run the library program
+    while True:
+        display()
+        try:
+            choice = int(input("Enter your choice 1-5: "))
+            if choice == 1:
+                add_item()
+            elif choice == 2:
+                search_item()
+            elif choice == 3:
+                remove_item()
+            elif choice == 4:
+                display_all()
+            elif choice == 5:
+                print("Exiting the program. Goodbye!!!!!!!!!!!!!!!")
+                break
             else:
-                libary.remove(item_remove)
+                print("Wrong choice, Please enter a number between 1- 5!")
+        except ValueError:
+            print("Wrong input. Please enter a right number!")
 
-
-    def search():
-        print("You can scearch by title, author")
-        searchng = input("What Item whould you like to search?:")
-        when = int(input("When did you add it 0 = 1?"))
-        if searchng in libary:
-            print("Seems Like it is in the libary!")
-            print(f"The item is{searchng}, wrote by{Author[when]} and the title is {Titles[when]} ")
-    main()
-            
-
-
-
-
-
-    
+# Run the program
+main()
