@@ -1,98 +1,78 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan  8 17:02:08 2025
+#Aaron.Wang Personal Library Program
 
-@author: wangqinghu
-"""
 
-# Financial Calculator Program
-import time
-def TIME():
-    print("Loding...")
-    time.sleep(1)
+# Pseudocode:
+# - Use a list to store items as dictionaries with title author and type
+# - Create functions for each different jobs
+
+
+#library list
+library = []
+
+def display():
+    # Display the chouice
+    print("1 = Add an item")
+    print("2 = Search for an item")
+    print("3 = Remove an item")
+    print("4 = Display all items")
+    print("5 = Exit the program")
+
+def add_item():
+    #Add a new item to the library
+    item_type = input("Enter the type of item (book, movie, music): ")
+    title = input("Enter the title: ")
+    author = input("Enter the author/artist/director: ")
+    # Add the item as a dictionary
+    library.append({"type": item_type, "title": title, "author": author})
+    print(f"Item '{title}' added to library.")
+
+def search_item():
+    """Search for an item by title or author."""
+    itemname = input("Enter the title or author to search: ")
+    results = []
+    #library loop
+    for item in library:
+        # Check if the item is the title or author
+        if itemname in item["title"] or itemname in item["author"]:
+            results.append(item)  # add item to results list
+            print(f"Item found!{results}")
+    
+
+def remove_item():
+    #Remove item
+    title = input("Enter the title of item to remove: ")
+    for item in library:
+        if item["title"] == title:
+            library.remove(item)
+            print(f"Item {title} removed from library")
+            return
+    print(f"No item with the title {title}")
+
+def display_all():
+    # Display all item in the library
+    print(library)
+
 def main():
-    """
-    Main function to handle user chouice.
-    """
+    # Main function to run the library program
     while True:
-        print("Welcome to the Financial Calculator!")
-        print("1. Savings Goal Calculator")
-        print("2. Compound Interest Calculator")
-        print("3. Budget Allocator")
-        print("4. Sale Price Calculator")
-        print("5. Tip Calculator")
-        print("6. Exit")
-        
-        choice = input("Select an option (1-6): ").strip()
-        
-        if choice == "1":
-            saving_goal_calculator()
-        elif choice == "2":
-            compound_interest_calculator()
-        elif choice == "3":
-            budget_allocator()
-        elif choice == "4":
-            sale_price_calculator()
-        elif choice == "5":
-            tip_calculator()
-        elif choice == "6":
-            print("Goodbye!")
-            break
-        else:
-            print("Please try again.")
-#saving goal calculator
-def saving_goal_calculator():
-    print("Saving Goal Calculator is now ready to go!")
-    goal = float(input("How much is your goal?:"))
-    deposit = float(input("How much would you deposit Weelky ot monthly?:"))
-    weak_or_month = input("is it weekly or monthly?:")
-    if weak_or_month == "weekly":
-        time = goal / deposit / 4
-    elif weak_or_month == "monthly":
-        time = goal / deposit
-    else:
-        print("Invalid. Try again.")
-        return
-    print(f"It will take about {time:.2f} months to reach your savings goal.")
-#compind interst calculator
-def compound_interest_calculator():
-    print("This is the compound interest calvulator!")
-    money_in_bank = float(input("Hi!, how much money do you now have in your bank?:"))
-    rate = float(input("Enter the annual interest rate (in %): ")) / 100
-    time = int(input("Enter the time in years: "))
-    future_money = money_in_bank * (1 + rate) ** (1 * time)
-    print(f"The future money of your investment is: ${future_money:.2f}")
-    #budget_allocator
-def budget_allocator():
-    print("This is the budget allocator!")
-    income = float(input("Enter your monthly income:"))
-    Savings = 0.20
-    Want_to_buy = 0.10
-    food = 0.30
-    others =  0.40
-    print("This is your budget")
-    time
-    print(f"Save this much money: {income * Savings:.2f}$")
-    TIME
-    print(f"This is how much to spend for what you wnat to buy:{income * Want_to_buy}$")
-    print(f"How much for food?:{income * food}$")
-    print(f"This is how much for other stuffs{income * others}$")
-    #sale_price_calculator
-def sale_price_calculator():
+        display()
+        try:
+            choice = int(input("Enter your choice 1-5: "))
+            if choice == 1:
+                add_item()
+            elif choice == 2:
+                search_item()
+            elif choice == 3:
+                remove_item()
+            elif choice == 4:
+                display_all()
+            elif choice == 5:
+                print("Exiting the program. Goodbye!!!!!!!!!!!!!!!")
+                break
+            else:
+                print("Wrong choice, Please enter a number between 1- 5!")
+        except ValueError:
+            print("Wrong input. Please enter a right number!")
 
-    original_price = float(input(" what is the original price: $"))
-    discount = float(input("what is the discount percentage: ")) / 100   
-    sale_price = original_price * (1 - discount)
-    print(f"the price is: ${sale_price:.2f}")
-    #tip_calculator
-def tip_calculator():
-    bill = float(input("Enter the bill amount: $"))
-    tip_percentage = float(input("Enter the tip percentage: ")) / 100
-    
-    tip = bill * tip_percentage
-    total = bill + tip
-    print(f"tip: ${tip:.2f}, total bill: ${total:.2f}")
+# Run the program
 main()
-
-    
