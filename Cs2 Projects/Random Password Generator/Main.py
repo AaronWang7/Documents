@@ -1,22 +1,41 @@
-passwrord_should_include = []
-upper_o_low = 0
-numbers = 0
-special = 0
-i = 0
-howlong = 0
-letters = ["a","b","c","d","e","f","g"]
-uper = ["A","B","C","C","E","F","G"]
-sp = ["@","#","$","%","&"]
-final = ""
-
-import time
+#Aaron Wang 
+#import random, to be used for random pick
 import random
-
-def main():
-    print("Hi! Do you want, y = yes, n = No length upper/lowercase letters, numbers, and special characters")
-    time.sleep(1)   
-    print("up to four, if you don't want just enter 5, one at a time")
+#password generater, adds letters, numbers specials, to create password, repeat length times.
+def generate_password(length, use_uppercase, use_lowercase, use_numbers, use_special):
+    characters = ""
     
+    if use_uppercase:
+        characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    if use_lowercase:
+        characters += "abcdefghijklmnopqrstuvwxyz"
+    if use_numbers:
+        characters += "0123456789"
+    if use_special:
+        characters += "!@#$%^&*()"
+
+    password = ""
+    #repeat length times, add random picked
+    for i in range(length):
+        password += random.choice(characters)
+    #return, so all program can recive
+    return password
+#main function to ask to requirments, and print out the final password, list them with numbers.
+def main():
+    length = int(input("Password length: "))
+    use_uppercase = input("uppercase?  y = yes,no = n: ") == "y"
+    use_lowercase = input("lowercase?? y = yes : ") == "y"
+    use_numbers = input("numbers? y = yes: ") == "y"
+    use_special = input("special characters? y = yes: ") == "y"
+    num = 0
+    for i in range(4):
+        num = num + 1
+        print(f"This is your password number :{num}")
+        print(generate_password(length, use_uppercase, use_lowercase, use_numbers, use_special))
+
+main()
+
+
 
 
 def lengthh():
